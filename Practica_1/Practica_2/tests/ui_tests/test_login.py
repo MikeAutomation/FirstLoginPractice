@@ -33,6 +33,7 @@ def test_login_success(driver, login_page):
         )
     with allure.step("Verify dashboard title"):
         assert "Just a moment" in driver.title
+
 @allure.story("Rejected Login Wrong User")
 def test_login_wruser(driver, login_page):
     login_page.login("admin", "admin")
@@ -45,7 +46,6 @@ def test_login_wruser(driver, login_page):
             attachment_type=allure.attachment_type.PNG
         )
     assert error_message.text == "Please enter a valid email address."
-
 
 @allure.story("Rejected Login Empty Values")
 def test_login_empty(driver, login_page):
