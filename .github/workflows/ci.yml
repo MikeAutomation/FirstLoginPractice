@@ -42,3 +42,10 @@ jobs:
       with:
         results-dir: allure-results
         report-dir: allure-report
+   
+        # Instalar Allure CLI
+    - name: Install Allure CLI
+      run: |
+        curl -o allure.tgz -L https://github.com/allure-framework/allure2/releases/download/2.21.0/allure-2.21.0.tgz
+        tar -xzf allure.tgz
+        sudo mv allure-2.21.0 /usr/local/bin/allure
