@@ -4,16 +4,21 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 from Practica_1.Practica_2.pages.login_page import LoginPage
-
+import tempfile
 import time
 
 
 @pytest.fixture
 def driver():
-    driver = webdriver.Chrome()
+    chrome_options = Options()
+    # Crea un directorio temporal único para evitar conflictos
+    temp_dir = tempfile.mkdtemp()
+    chrome_options.add_argument(f"--user-data-dir={temp_dir}")
+    driver = webdriver.Chrome(options=chrome_options)
     yield driver
-    driver.quit()   
+    driver.quit()
 
 
 @pytest.fixture
