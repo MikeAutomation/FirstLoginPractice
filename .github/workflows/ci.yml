@@ -1,0 +1,44 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Configura el repositorio
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Configura Python
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    # 3. Instala dependencias
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+
+    # 4. Ejecuta las pruebas
+    - name: Run tests
+      run: |
+        source venv/bin/activate
+        pytest --alluredir=allure-results
+
+    # 5. Genera el reporte Allure
+    - name: Allure Report
+      uses: allure-framework/actions-allure-report@v2
+      with:
+        results-dir: allure-results
+        report-dir: allure-report
