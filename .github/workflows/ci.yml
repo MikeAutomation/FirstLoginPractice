@@ -31,6 +31,13 @@ jobs:
     #validar dependencias
     - name: Verify installed packages
       run: pip list
+    #refinando confirmacionnde ambiente
+    - name: Check Python environment
+      run: python -c "import sys; print(sys.path)"
+    #confirmar path
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=." >> $GITHUB_ENV
+    
     # 3. Instalar dependencias
     - name: Install dependencies
       run: |
