@@ -1,6 +1,7 @@
 import pytest
 import allure
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,6 +9,7 @@ from selenium.webdriver.chrome.options import Options
 from Practica_1.Practica_2.pages.login_page import LoginPage
 
 import time
+# Esto descarga y utiliza la versión correcta de ChromeDriver
 
 
 @pytest.fixture
@@ -15,11 +17,9 @@ def driver():
     chrome_options = Options()
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    # Crea un directorio temporal único para evitar conflictos
     driver = webdriver.Chrome(options=chrome_options)
     yield driver
     driver.quit()
-
 
 @pytest.fixture
 def login_page(driver):
