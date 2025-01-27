@@ -28,6 +28,9 @@ jobs:
     #intalando webdriver-manager
     - name: Install Webdriver Manager
       run: pip install webdriver-manager
+    #validar dependencias
+    - name: Verify installed packages
+      run: pip list
     # 3. Instalar dependencias
     - name: Install dependencies
       run: |
