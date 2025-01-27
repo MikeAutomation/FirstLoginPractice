@@ -25,7 +25,9 @@ jobs:
     #actualizar pip
     - name: Upgrade pip
       run: python -m pip install --upgrade pip
-
+    #intalando webdriver-manager
+    - name: Install Webdriver Manager
+      run: pip install webdriver-manager
     # 3. Instalar dependencias
     - name: Install dependencies
       run: |
