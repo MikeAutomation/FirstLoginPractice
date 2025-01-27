@@ -23,36 +23,20 @@ jobs:
       with:
         python-version: '3.10'
 
-    # 3. Instalar Google Chrome
-    - name: Install Chrome
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
-
-    # 4. Instalar ChromeDriver
-    - name: Install ChromeDriver
-      run: |
-        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+' | head -n 1)
-        CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
-        wget https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip
-        unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/bin/
-        chmod +x /usr/bin/chromedriver
-
-    # 5. Instalar dependencias
+    # 3. Instalar dependencias
     - name: Install dependencies
       run: |
         python -m venv venv
         . venv/bin/activate
         pip install -r requirements.txt
 
-    # 6. Ejecutar pruebas con Pytest y generar resultados de Allure
+    # 4. Ejecutar pruebas con Pytest
     - name: Run tests
       run: |
         . venv/bin/activate
         pytest --alluredir=allure-results
 
-    # 7. Instalar Allure CLI
+    # 5. Instalar Allure CLI
     - name: Install Allure CLI
       run: |
         curl -o allure.tgz -L https://github.com/allure-framework/allure2/releases/download/2.21.0/allure-2.21.0.tgz
@@ -60,12 +44,12 @@ jobs:
         sudo mv allure-2.21.0 /opt/allure
         sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
 
-    # 8. Generar el reporte Allure
+    # 6. Generar el reporte Allure
     - name: Generate Allure Report
       run: |
         allure generate allure-results --clean -o allure-report
 
-    # 9. Publicar el reporte Allure en GitHub Pages
+    # 7. Publicar el reporte Allure en GitHub Pages
     - name: Deploy Allure Report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
