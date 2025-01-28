@@ -21,6 +21,7 @@ def driver():
     chrome_options.add_argument("--incognito")  # Agregar modo incógnito
     chrome_options.add_argument("--headless")  # Ejecutar sin UI en CI/CD
     #driver = webdriver.Chrome(options=chrome_options)
+    # Crear el driver usando WebDriverManager
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     yield driver
     driver.quit()
