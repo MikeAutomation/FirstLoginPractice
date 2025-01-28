@@ -5,13 +5,13 @@ from selenium.webdriver.chrome.options import Options
 
 def test_google_homepage():
     # Configurar opciones para headless (opcional en CI/CD)
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
+    c_options = Options()
+    #c_options.add_argument("--headless")
+    c_options.add_argument("--no-sandbox")
+    c_options.add_argument("--disable-dev-shm-usage")
 
     # Crear el driver usando WebDriverManager
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver = webdriver.Chrome(options=c_options)
 
     # Abrir Google y verificar el título
     driver.get("https://www.google.com")
