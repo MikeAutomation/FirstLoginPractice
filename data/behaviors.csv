@@ -1,0 +1,5 @@
+"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"","","","0","0","1","0","0"
+"","","Rejected Login Wrong User","0","0","1","0","0"
+"","","Rejected Login Empty Values","0","0","1","0","0"
+"","Login","Successful Login","0","0","1","0","0"
