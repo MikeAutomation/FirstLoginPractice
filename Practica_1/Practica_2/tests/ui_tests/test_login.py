@@ -15,11 +15,11 @@ import time
 
 @pytest.fixture
 def driver():
-    chrome_options = Options()
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--incognito")  # Agregar modo incógnito
-    chrome_options.add_argument("--headless")  # Ejecutar sin UI en CI/CD
+    options = Options()
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--incognito")  # Agregar modo incógnito
+    options.add_argument("--headless")  # Ejecutar sin UI en CI/CD
     #driver = webdriver.Chrome(options=chrome_options)
     # Crear el driver usando WebDriverManager
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
