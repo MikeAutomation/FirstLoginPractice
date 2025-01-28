@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from Practica_1.Practica_2.pages.login_page import LoginPage
 
 import time
@@ -19,7 +20,8 @@ def driver():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--incognito")  # Agregar modo incógnito
     chrome_options.add_argument("--headless")  # Ejecutar sin UI en CI/CD
-    driver = webdriver.Chrome(options=chrome_options)
+    #driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     yield driver
     driver.quit()
 
