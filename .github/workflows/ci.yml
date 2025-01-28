@@ -44,7 +44,8 @@ jobs:
         python -m venv venv
         . venv/bin/activate
         pip install -r requirements.txt
-
+    - name: Debug Python Path
+      run: python -c "import sys; print(sys.path)"
     # 4. Ejecutar pruebas con Pytest
     - name: Run tests
       run: |
