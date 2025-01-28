@@ -11,6 +11,7 @@ def test_google_homepage():
     c_options.add_argument("--disable-dev-shm-usage")
 
     # Crear el driver usando WebDriverManager
+    #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver = webdriver.Chrome(options=c_options)
 
     # Abrir Google y verificar el título
